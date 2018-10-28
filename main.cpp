@@ -26,8 +26,7 @@ int playGame(Deck<I> &d, T& player)
   for(; card_num <= 2; card_num++)
     std::cout << card_num << ") " << player.hand.getCard(card_num-1).getStr() << '\n';
 
-  bool hit = player.hit();
-  while(hit)
+  for(bool hit; hit = player.hit();)
   {
     const Card card = d.getCard();
     std::cout << GoUpLine << card_num++ << ") " << card.getStr() <<'\n';
@@ -49,9 +48,8 @@ int playGame(Deck<I> &d, T& player)
 }
 int main()
 {
-  bool play = true;
   std::size_t money = __rdtsc()%100 + 150;
-  while(play && money)
+  for(bool play = true; play && money; )
   {
     std::cout << '\n';
 
