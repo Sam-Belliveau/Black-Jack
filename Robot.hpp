@@ -24,26 +24,26 @@ struct Robot
   {
     if(min == 0) min = 16;
 
-    std::cout <<      "Another Card? (Thinking...)\r" << std::flush;
-    std::flush(std::cout);
+    std::cout << "(" << hand.getValue() << ") Another Card? (Thinking...)\r"
+      << std::flush;
     std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 
     if(hand.getValue() < 17 && hand.getValue() == min)
     {
-      std::cout <<    "Another Card? Yes          \n" << std::flush;
-      std::flush(std::cout);
+      std::cout << "(" << hand.getValue() << ") Another Card? Yes          \n"
+        << std::flush;
       std::this_thread::sleep_for(std::chrono::milliseconds(2000));
       return true;
     } else if(hand.getValue() < min)
     {
-      std::cout <<    "Another Card? Yes          \n" << std::flush;
-      std::flush(std::cout);
+      std::cout << "(" << hand.getValue() << ") Another Card? Yes          \n"
+        << std::flush;
       std::this_thread::sleep_for(std::chrono::milliseconds(2000));
       return true;
     } else
     {
-      std::cout <<    "Another Card? No           \n" << std::flush;
-      std::flush(std::cout);
+      std::cout << "(" << hand.getValue() << ") Another Card? No           \n"
+        << std::flush;
       std::this_thread::sleep_for(std::chrono::milliseconds(2000));
       return false;
     }

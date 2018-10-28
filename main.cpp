@@ -98,6 +98,6 @@ int main()
     std::string answer = "";
     std::getline(std::cin, answer);
     if(answer.empty()) play = true;
-    else play = (answer[0] == 'n' || answer[0] == 'N' || answer[0] == '0');
+    else play = !(answer[0] == 'n' || answer[0] == 'N' || answer[0] == '0');
   }
 }
