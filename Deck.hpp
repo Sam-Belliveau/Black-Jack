@@ -10,6 +10,7 @@
 #else
 #include <x86intrin.h>
 #endif
+#include <cstdlib>
 #include <algorithm>
 #include <random>
 
@@ -21,7 +22,7 @@ public:
   static const std::size_t card_count = deck_size * decks;
 
 public:
-  Deck() : twister(__rdtsc()), uni(0, card_count-1)
+  Deck() : twister(__rdtsc() + time(0)), uni(0, card_count-1)
   { reset(); }
 
   void reset()
@@ -33,10 +34,7 @@ public:
   /* Make the shuffle as random as possible */
   void shuffle()
   {
-    std::mt19937 twister(__rdtsc());
-    std::uniform_int_distribution<std::size_t> uni(0, card_count-1);
-
-    for(std::size_t loop = 0; loop < 0x1000; ++loop)
+    for(std::size_t loop = 0; loop < 0x10000; ++loop)
       for(std::size_t i = 0; i < card_count; ++i)
         std::swap(cards[i], cards[uni(twister)]);
   }

@@ -40,11 +40,11 @@ int playGame(Deck<I> &d, T& player)
 }
 int main()
 {
+  Deck<1> d;
   std::size_t money = __rdtsc()%100 + 150;
   std::cout << "Balance: " << money << "$\n";
   while(money)
   {
-    Deck<1> d;
     d.shuffle();
 
     Player human(d);
@@ -63,7 +63,6 @@ int main()
 
     std::cout << Header << "PLAYER'S DECK:" << Reset << std::endl;
     const int pv = playGame(d, human);
-    std::this_thread::sleep_for(std::chrono::milliseconds(1250));
 
 		if(bet << 1 <= money && pv)
 		{
@@ -79,7 +78,9 @@ int main()
 			) bet <<= 1;
 		}
 
-    robot.min = pv;
+    std::this_thread::sleep_for(std::chrono::milliseconds(1250));
+
+    robot.min = pv ? pv : 16;
     std::cout << '\n' << Header << "ROBOT'S DECK:" << Reset << std::endl;
     const int rv = playGame(d, robot);
     std::this_thread::sleep_for(std::chrono::milliseconds(1250));
