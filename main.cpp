@@ -57,7 +57,6 @@ int main()
       std::cout << "Set Your Wager: ";
       std::string answer = "0";
       std::getline(std::cin, answer);
-
       bet = std::atoll(answer.c_str());
     }
     std::cout << "\n";
@@ -87,7 +86,7 @@ int main()
     const int rv = playGame(d, robot);
     std::this_thread::sleep_for(std::chrono::milliseconds(1250));
 
-    if(pv == rv) { std::cout << "Tie, House Wins!\n";  money -= bet; }
+    if(pv == rv) { std::cout << "Tie, Split Bet!\n";  money -= bet >> 1; }
     if(pv <  rv) { std::cout << "Robot Wins!\n";  money -= bet; }
     if(pv >  rv) { std::cout << "Player Wins!\n"; money += bet; }
     std::cout << "\nBalance: " << money << "$\n";
