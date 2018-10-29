@@ -9,15 +9,9 @@
 #include "Player.hpp"
 #include "Robot.hpp"
 
-#ifdef _WIN32
-  const char* Header   = "\0";
-  const char* GoUpLine = "\0";
-  const char* Reset    = "\0";
-#else
-  const char* Header   = "\033[30m\033[42m\0";
-  const char* GoUpLine = "\x1b[1A\0";
-  const char* Reset    = "\033[0m\0";
-#endif
+const char* Header   = "\033[30m\033[47m\0";
+const char* GoUpLine = "\x1b[1A\0";
+const char* Reset    = "\033[0m\0";
 
 template<std::size_t I, class T>
 int playGame(Deck<I> &d, T& player)
