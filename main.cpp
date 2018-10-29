@@ -41,7 +41,7 @@ int playGame(Deck<I> &d, T& player)
 int main()
 {
   std::size_t money = __rdtsc()%100 + 150;
-  for(bool play = true; play && money; )
+  while(money)
   {
     std::cout << '\n';
 
@@ -76,18 +76,8 @@ int main()
     if(pv <  rv) { std::cout << "Robot Wins!\n";  money -= bet; }
     if(pv >  rv) { std::cout << "Player Wins!\n"; money += bet; }
     std::cout << "Balance: " << money << "$\n\n";
-
-    if(!money)
-    {
-      std::cout << "You Lose!\n";
-      return 0;
-    }
-
-    std::cout << "Play Again? [Y/n]: ";
-
-    std::string answer = "";
-    std::getline(std::cin, answer);
-    if(answer.empty()) play = true;
-    else play = !(answer[0] == 'n' || answer[0] == 'N' || answer[0] == '0');
   }
+
+  std::cout << "You Lose!\n";
+  return 0;
 }
