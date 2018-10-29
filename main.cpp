@@ -77,12 +77,12 @@ int main()
 			if (
 				answer.empty() ||
 				(answer[0] == 'y' || answer[0] == 'Y' || answer[0] == '1')
-			) { bet <<= 1; Double = true; }
+			) bet <<= 1;
 		}
 
     std::this_thread::sleep_for(std::chrono::milliseconds(1250));
 
-    robot.min = Double ? pv : 16;
+    robot.min = pv ? pv : 16;
     std::cout << '\n' << Header << "ROBOT'S DECK:" << Reset << std::endl;
     const int rv = playGame(d, robot);
     std::this_thread::sleep_for(std::chrono::milliseconds(1250));
