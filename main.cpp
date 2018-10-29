@@ -38,6 +38,7 @@ int playGame(Deck<I> &d, T& player)
     << player.hand.getValue() << "                            \n\n";
   return player.hand.getValue();
 }
+
 int main()
 {
   Deck<1> d;
@@ -64,23 +65,24 @@ int main()
     std::cout << Header << "PLAYER'S DECK:" << Reset << std::endl;
     const int pv = playGame(d, human);
 
+    bool Double = false;
 		if(bet << 1 <= money && pv)
 		{
-			std::cout << "Double Wager? (" 
+			std::cout << "Double Wager? ("
 				<< bet << "$ -> " << (bet << 1) << "$)" << "[y/N]: ";
 
 			std::string answer = "";
 			std::getline(std::cin, answer);
 
 			if (
-				answer.empty() || 
+				answer.empty() ||
 				(answer[0] == 'y' || answer[0] == 'Y' || answer[0] == '1')
-			) bet <<= 1;
+			) { bet <<= 1; Double = true; }
 		}
 
     std::this_thread::sleep_for(std::chrono::milliseconds(1250));
 
-    robot.min = pv ? pv : 16;
+    robot.min = Double ? pv : 16;
     std::cout << '\n' << Header << "ROBOT'S DECK:" << Reset << std::endl;
     const int rv = playGame(d, robot);
     std::this_thread::sleep_for(std::chrono::milliseconds(1250));
