@@ -9,9 +9,9 @@
 #include "Player.hpp"
 #include "Robot.hpp"
 
-const char* Header   = "\033[30m\033[47m\0";
-const char* GoUpLine = "\x1b[1A\0";
-const char* Reset    = "\033[0m\0";
+const char* Header   = "\033[30m\033[47m";
+const char* GoUpLine = "\x1b[1A";
+const char* Reset    = "\033[0m";
 
 template<std::size_t I, class T>
 int playGame(Deck<I> &d, T& player)
@@ -65,12 +65,26 @@ int main()
     const int pv = playGame(d, human);
     std::this_thread::sleep_for(std::chrono::milliseconds(1250));
 
+		if(bet << 1 <= money && pv)
+		{
+			std::cout << "Double Wager? (" 
+				<< bet << "$ -> " << (bet << 1) << "$)" << "[y/N]: ";
+
+			std::string answer = "";
+			std::getline(std::cin, answer);
+
+			if (
+				answer.empty() || 
+				(answer[0] == 'y' || answer[0] == 'Y' || answer[0] == '1')
+			) bet <<= 1;
+		}
+
     robot.min = pv;
-    std::cout << Header << "ROBOT'S DECK:" << Reset << std::endl;
+    std::cout << '\n' << Header << "ROBOT'S DECK:" << Reset << std::endl;
     const int rv = playGame(d, robot);
     std::this_thread::sleep_for(std::chrono::milliseconds(1250));
 
-    if(pv == rv) std::cout << "Tie!\n";
+    if(pv == rv) { std::cout << "Tie, House Wins!\n";  money -= bet; }
     if(pv <  rv) { std::cout << "Robot Wins!\n";  money -= bet; }
     if(pv >  rv) { std::cout << "Player Wins!\n"; money += bet; }
     std::cout << "\nBalance: " << money << "$\n";
