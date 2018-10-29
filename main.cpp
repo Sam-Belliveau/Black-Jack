@@ -41,17 +41,15 @@ int playGame(Deck<I> &d, T& player)
 int main()
 {
   std::size_t money = __rdtsc()%100 + 150;
+  std::cout << "Balance: " << money << "$\n";
   while(money)
   {
-    std::cout << '\n';
-
     Deck<1> d;
     d.shuffle();
 
     Player human(d);
     Robot robot(d);
 
-    std::cout << "Balance: " << money << "$\n";
     std::size_t bet = -1;
     while(bet > money || bet == 0)
     {
@@ -75,7 +73,7 @@ int main()
     if(pv == rv) std::cout << "Tie!\n";
     if(pv <  rv) { std::cout << "Robot Wins!\n";  money -= bet; }
     if(pv >  rv) { std::cout << "Player Wins!\n"; money += bet; }
-    std::cout << "Balance: " << money << "$\n\n";
+    std::cout << "\nBalance: " << money << "$\n";
   }
 
   std::cout << "You Lose!\n";
