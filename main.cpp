@@ -46,6 +46,7 @@ int main()
   std::cout << "Balance: " << money << "$\n";
   while(money)
   {
+    d.reset();
     d.shuffle();
 
     Player human(d);
