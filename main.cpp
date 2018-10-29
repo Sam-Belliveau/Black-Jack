@@ -32,8 +32,6 @@ int playGame(Deck<I> &d, T& player)
         " (" << player.hand.getValue() << ")\n\n";
       return 0;
     }
-
-    hit = player.hit();
   }
 
   std::cout << GoUpLine << Header << "Final Score:" << Reset << ' '

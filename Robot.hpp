@@ -22,8 +22,6 @@ struct Robot
 
   bool hit()
   {
-    if(min == 0) min = 16;
-
     std::cout << "(" << hand.getValue() << ") Another Card? (Thinking...)\r"
       << std::flush;
     std::this_thread::sleep_for(std::chrono::milliseconds(2000));
