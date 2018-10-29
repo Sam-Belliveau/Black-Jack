@@ -69,7 +69,7 @@ int main()
     const int pv = playGame(d, human);
     std::this_thread::sleep_for(std::chrono::milliseconds(1250));
 
-    robot.min = pv ? pv : 16;
+    robot.min = pv;
     std::cout << Header << "ROBOT'S DECK:" << Reset << std::endl;
     const int rv = playGame(d, robot);
     std::this_thread::sleep_for(std::chrono::milliseconds(1250));
